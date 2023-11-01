@@ -75,6 +75,8 @@ namespace SuperUnityBuild.BuildTool
 
                 SerializedProperty buildOptions = property.FindPropertyRelative("buildOptions");
 
+
+#pragma warning disable CS0618 // 类型或成员已过时
                 bool enableHeadlessMode = ((BuildOptions)buildOptions.intValue & BuildOptions.EnableHeadlessMode) == BuildOptions.EnableHeadlessMode;
                 bool developmentBuild = ((BuildOptions)buildOptions.intValue & BuildOptions.Development) == BuildOptions.Development;
                 bool allowDebugging = ((BuildOptions)buildOptions.intValue & BuildOptions.AllowDebugging) == BuildOptions.AllowDebugging;
@@ -82,7 +84,7 @@ namespace SuperUnityBuild.BuildTool
                 enableHeadlessMode = EditorGUILayout.ToggleLeft(" Server Build", enableHeadlessMode);
                 if (enableHeadlessMode) buildOptions.intValue |= (int)BuildOptions.EnableHeadlessMode;
                 else buildOptions.intValue &= ~(int)BuildOptions.EnableHeadlessMode;
-
+#pragma warning restore CS0618 // 类型或成员已过时
                 developmentBuild = EditorGUILayout.ToggleLeft(" Development Build", developmentBuild);
                 if (developmentBuild) buildOptions.intValue |= (int)BuildOptions.Development;
                 else buildOptions.intValue &= ~(int)BuildOptions.Development;
